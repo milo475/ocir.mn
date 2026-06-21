@@ -750,3 +750,8 @@ WARNING: Unmatched cancel notification for request id 11
 2026.06.21 21:18:51 WARN  javac exited with exit code 1
 2026.06.21 21:18:51 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
 2026.06.21 21:18:51 INFO  time: compiled ocir in 0.28s
+2026.06.21 21:31:49 INFO  compiling ocir (16 java sources)
+2026.06.21 21:31:49 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:31:49 WARN  javac exited with exit code 1
+2026.06.21 21:31:49 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:31:49 INFO  time: compiled ocir in 0.28s

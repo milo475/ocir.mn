@@ -19,7 +19,7 @@ public class DatabaseManager {
     }
 
     public static void initDatabase() {
-        try (InputStream is = DatabaseManager.class.getResourceAsStream("db_setup.sql")) {
+        try (InputStream is = DatabaseManager.class.getResourceAsStream("/com/ocir/db_setup.sql")) {
             if (is == null) {
                 System.err.println("db_setup.sql not found in resources!");
                 return;
