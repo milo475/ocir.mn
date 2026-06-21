@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.CreatePostController"
+            stylesheets="@../css/style.css" prefWidth="800" prefHeight="600">
+    <top>
+        <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Label text="🔗 Ocir" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← Буцах" onAction="#goBack" styleClass="btn-small"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="15" maxWidth="600">
+            <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+            <Label text="➕ Шинэ пост үүсгэх" styleClass="form-title"/>
+            <TextArea fx:id="contentField" promptText="Юу бодож байна?" prefRowCount="5" styleClass="form-input"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="📷 Зураг нэмэх" onAction="#selectImage" styleClass="btn-small"/>
+                <Label fx:id="imageLabel" text="" styleClass="post-time"/>
+            </HBox>
+            <Label fx:id="errorLabel" styleClass="error-label"/>
+            <Button text="Нийтлэх" onAction="#handlePost" styleClass="btn-primary" maxWidth="Infinity"/>
+        </VBox>
+    </center>
+</BorderPane>
