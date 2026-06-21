@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.RegisterController"
+           stylesheets="@../css/style.css" styleClass="login-bg" prefWidth="800" prefHeight="600">
+    <VBox alignment="CENTER" spacing="15" maxWidth="320" styleClass="login-card">
+        <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+        <Label text="🔗 Ocir" styleClass="app-title"/>
+        <Label text="Бүртгүүлэх" styleClass="form-title"/>
+        <TextField fx:id="usernameField" promptText="Username" styleClass="form-input"/>
+        <TextField fx:id="emailField" promptText="Email" styleClass="form-input"/>
+        <PasswordField fx:id="passwordField" promptText="Нууц үг" styleClass="form-input"/>
+        <PasswordField fx:id="confirmPasswordField" promptText="Нууц үг давтах" styleClass="form-input"/>
+        <Label fx:id="errorLabel" styleClass="error-label"/>
+        <Button text="Бүртгүүлэх" onAction="#handleRegister" styleClass="btn-primary" maxWidth="Infinity"/>
+        <Hyperlink text="Бүртгэлтэй юу? Нэвтрэх" onAction="#goToLogin" styleClass="link"/>
+    </VBox>
+</StackPane>
