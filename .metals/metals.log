@@ -709,3 +709,44 @@
 2026.06.21 21:04:01 INFO  Connected to Build server: Bloop v2.0.19[0m
 2026.06.21 21:04:01 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip, /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.[0m
 2026.06.21 21:04:04 INFO  time: indexed workspace in 2.39s[0m
+2026.06.21 21:08:43 INFO  Shut down connection with build server.[0m
+2026.06.21 21:14:05 INFO  Started: Metals version 1.6.7 in folders '/home/kali/ocir.mn' for client Visual Studio Code 1.123.0.
+2026.06.21 21:14:05 INFO  Memory monitor started
+2026.06.21 21:14:05 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.06.21 21:14:05 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/LoginController.java. Using fallback presentation compiler.
+Jun 21, 2026 9:14:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+Jun 21, 2026 9:14:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 6
+Jun 21, 2026 9:14:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.06.21 21:14:05 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/LoginController.java. Using fallback presentation compiler.
+2026.06.21 21:14:05 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/RegisterController.java. Using fallback presentation compiler.
+2026.06.21 21:14:06 INFO  Attempting to connect to the build server...
+2026.06.21 21:14:06 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/RegisterController.java. Using fallback presentation compiler.
+2026.06.21 21:14:05 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/RegisterController.java. Using fallback presentation compiler.
+2026.06.21 21:14:06 INFO  Found a Bloop server running
+Jun 21, 2026 9:14:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 7
+Jun 21, 2026 9:14:06 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 11
+2026.06.21 21:14:05 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/RegisterController.java. Using fallback presentation compiler.
+2026.06.21 21:14:06 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/kali/ocir.mn/.metals/bsp.trace.json or /home/kali/.cache/metals/bsp.trace.json
+2026.06.21 21:14:06 INFO  time: Connected to build server in 0.18s
+2026.06.21 21:14:06 INFO  Connected to Build server: Bloop v2.0.19
+2026.06.21 21:14:07 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip, /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.
+2026.06.21 21:14:07 INFO  time: indexed workspace in 1.34s
+2026.06.21 21:14:08 INFO  compiling ocir (16 java sources)
+2026.06.21 21:14:08 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:14:08 WARN  javac exited with exit code 1
+2026.06.21 21:14:08 INFO  time: compiled ocir in 0.38s
+2026.06.21 21:18:38 INFO  compiling ocir (16 java sources)
+2026.06.21 21:18:38 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:18:38 WARN  javac exited with exit code 1
+2026.06.21 21:18:38 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:18:38 INFO  time: compiled ocir in 0.26s
+2026.06.21 21:18:51 INFO  compiling ocir (16 java sources)
+2026.06.21 21:18:51 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:18:51 WARN  javac exited with exit code 1
+2026.06.21 21:18:51 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.21 21:18:51 INFO  time: compiled ocir in 0.28s

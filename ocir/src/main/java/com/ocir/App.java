@@ -1,6 +1,7 @@
 package com.ocir;
 
 import com.ocir.model.User;
+import com.ocir.util.DatabaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        DatabaseManager.initDatabase();
         primaryStage = stage;
         primaryStage.setTitle("Ocir - Social Media");
         navigateTo("view/login.fxml");
