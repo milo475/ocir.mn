@@ -1,0 +1,266 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "ocir",
+        "directory": "/home/kali/ocir.mn/ocir",
+        "workspaceDir": "/home/kali/ocir.mn/ocir",
+        "sources": [
+            "/home/kali/ocir.mn/ocir/src/main/java"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "/home/kali/ocir.mn/ocir/target/classes",
+            "/home/kali/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-linux.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-linux.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-linux.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar",
+            "/home/kali/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-linux.jar",
+            "/home/kali/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar",
+            "/home/kali/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar"
+        ],
+        "out": "/home/kali/ocir.mn/ocir/target",
+        "classesDir": "/home/kali/ocir.mn/ocir/target/classes",
+        "resources": [
+            "/home/kali/ocir.mn/ocir/src/main/resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "-target",
+                "11",
+                "-source",
+                "11",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "mill.testng.TestNGFramework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/usr/lib/jvm/java-21-openjdk-amd64",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "com.google.protobuf",
+                    "name": "protobuf-java",
+                    "version": "3.21.9",
+                    "artifacts": [
+                        {
+                            "name": "protobuf-java",
+                            "path": "/home/kali/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar"
+                        },
+                        {
+                            "name": "protobuf-java",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-graphics",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-graphics",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar"
+                        },
+                        {
+                            "name": "javafx-graphics",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-base",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-base",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar"
+                        },
+                        {
+                            "name": "javafx-base",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-fxml",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-fxml",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar"
+                        },
+                        {
+                            "name": "javafx-fxml",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-base",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-base",
+                            "classifier": "linux",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-graphics",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-graphics",
+                            "classifier": "linux",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-fxml",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-fxml",
+                            "classifier": "linux",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-controls",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-controls",
+                            "classifier": "linux",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.openjfx",
+                    "name": "javafx-controls",
+                    "version": "17.0.2",
+                    "artifacts": [
+                        {
+                            "name": "javafx-controls",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar"
+                        },
+                        {
+                            "name": "javafx-controls",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.mysql",
+                    "name": "mysql-connector-j",
+                    "version": "8.0.33",
+                    "artifacts": [
+                        {
+                            "name": "mysql-connector-j",
+                            "path": "/home/kali/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar"
+                        },
+                        {
+                            "name": "mysql-connector-j",
+                            "classifier": "sources",
+                            "path": "/home/kali/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

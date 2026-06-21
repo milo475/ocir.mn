@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.MainController"
+            stylesheets="@../css/style.css" prefWidth="1300" prefHeight="900">
+    <!-- Top Nav Bar -->
+    <top>
+        <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Label text="🔗 Ocir" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="🔍 Хайх..." styleClass="search-input" prefWidth="250"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="currentUserLabel" styleClass="nav-user"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="btn-logout"/>
+        </HBox>
+    </top>
+    <!-- Left Sidebar -->
+    <left>
+        <VBox styleClass="left-sidebar" spacing="5" prefWidth="200">
+            <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
+            <Button text="📰 Нүүр Feed" onAction="#showFeed" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
+            <Button text="👤 Профайл" onAction="#showProfile" styleClass="sidebar-btn" maxWidth="Infinity"/>
+            <Button text="➕ Пост нэмэх" onAction="#showCreatePost" styleClass="sidebar-btn" maxWidth="Infinity"/>
+            <Button text="👥 Followers" onAction="#showFollowers" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    <!-- Center Feed -->
+    <center>
+        <VBox styleClass="feed-area" spacing="15">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <!-- Create Post Box -->
+            <HBox styleClass="create-post-box" spacing="10" alignment="CENTER_LEFT">
+                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                <TextField fx:id="quickPostField" promptText="📝 Юу бодож байна?" HBox.hgrow="ALWAYS" styleClass="form-input"/>
+                <Button text="Нийтлэх" onAction="#handleQuickPost" styleClass="btn-primary"/>
+            </HBox>
+            <!-- Posts Feed -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="feed-scroll">
+                <VBox fx:id="postsContainer" spacing="15">
+                    <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+    <!-- Right Sidebar -->
+    <right>
+        <VBox styleClass="right-sidebar" spacing="15" prefWidth="280">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <!-- Profile Card -->
+            <VBox styleClass="profile-card" alignment="CENTER" spacing="8">
+                <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                <Label fx:id="profileNameLabel" styleClass="profile-name"/>
+                <Label fx:id="profileStatsLabel" styleClass="profile-stats"/>
+                <Button text="Профайл засах" onAction="#showProfile" styleClass="btn-small"/>
+            </VBox>
+            <!-- Suggested Users -->
+            <Label text="Санал болгох хэрэглэгчид" styleClass="section-title"/>
+            <VBox fx:id="suggestedUsersContainer" spacing="8"/>
+        </VBox>
+    </right>
+</BorderPane>
