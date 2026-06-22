@@ -225,4 +225,5 @@ public class MainController {
     @FXML private void showProfile() { App.navigateTo("view/profile.fxml"); }
     @FXML private void showCreatePost() { App.navigateTo("view/create_post.fxml"); }
     @FXML private void showFollowers() { App.navigateTo("view/profile.fxml"); }
+    @FXML private void showMessages() { App.navigateTo("view/messages.fxml"); }
 }

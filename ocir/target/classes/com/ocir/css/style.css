@@ -64,3 +64,29 @@
 /* Comments */
 .comment-text { -fx-font-size: 12; }
 .comment-input { -fx-background-color: #f0f2f5; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 6; -fx-font-size: 11; }
+
+/* Chat styles */
+.chat-bubble-mine {
+    -fx-background-color: #0095f6;
+    -fx-text-fill: white;
+    -fx-background-radius: 18 18 4 18;
+}
+.chat-bubble-other {
+    -fx-background-color: #efefef;
+    -fx-text-fill: #262626;
+    -fx-background-radius: 18 18 18 4;
+}
+.chat-input-bar {
+    -fx-background-color: #fafafa;
+    -fx-border-color: #dbdbdb;
+    -fx-border-width: 1 0 0 0;
+}
+.conversation-row {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #efefef;
+    -fx-border-radius: 8;
+}
+.conversation-row:hover {
+    -fx-background-color: #fafafa;
+}

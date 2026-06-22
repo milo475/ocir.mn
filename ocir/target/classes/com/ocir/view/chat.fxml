@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.ChatController"
+            stylesheets="@../css/style.css" prefWidth="1300" prefHeight="900">
+    <top>
+        <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="15">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Button text="←" onAction="#goBack" styleClass="btn-small"/>
+            <ImageView fx:id="chatUserImage" fitWidth="36" fitHeight="36" preserveRatio="true" visible="false" managed="false"/>
+            <Label fx:id="chatUserName" styleClass="nav-title"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fx:id="chatScrollPane" fitToWidth="true" styleClass="feed-scroll">
+            <VBox fx:id="messagesContainer" spacing="8">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" styleClass="chat-input-bar">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <TextField fx:id="messageInput" promptText="Мессеж бичих..." HBox.hgrow="ALWAYS" styleClass="form-input"/>
+            <Button text="Илгээх" onAction="#sendMessage" styleClass="btn-primary"/>
+        </HBox>
+    </bottom>
+</BorderPane>

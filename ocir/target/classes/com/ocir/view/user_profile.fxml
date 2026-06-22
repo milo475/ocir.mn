@@ -30,7 +30,10 @@
                         <Label fx:id="followingCountLabel" styleClass="stat-label"/>
                     </HBox>
                     <Label fx:id="bioLabel" styleClass="profile-bio"/>
-                    <Button fx:id="followBtn" onAction="#toggleFollow" styleClass="btn-primary"/>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button fx:id="followBtn" onAction="#toggleFollow" styleClass="btn-primary"/>
+                        <Button text="💬 Мессеж" onAction="#openChat" styleClass="btn-primary"/>
+                    </HBox>
                 </VBox>
                 <Label text="Постууд" styleClass="section-title"/>
                 <VBox fx:id="userPostsContainer" spacing="15"/>

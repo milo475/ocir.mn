@@ -14,6 +14,7 @@
             <TextField fx:id="searchField" promptText="🔍 Хайх..." styleClass="search-input" prefWidth="250"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="currentUserLabel" styleClass="nav-user"/>
+            <Button text="💬" onAction="#showMessages" styleClass="btn-small"/>
             <Button text="Logout" onAction="#handleLogout" styleClass="btn-logout"/>
         </HBox>
     </top>
@@ -23,6 +24,7 @@
             <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
             <Button text="📰 Нүүр Feed" onAction="#showFeed" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
             <Button text="👤 Профайл" onAction="#showProfile" styleClass="sidebar-btn" maxWidth="Infinity"/>
+            <Button text="💬 Chat" onAction="#showMessages" styleClass="sidebar-btn" maxWidth="Infinity"/>
             <Button text="➕ Пост нэмэх" onAction="#showCreatePost" styleClass="sidebar-btn" maxWidth="Infinity"/>
             <Button text="👥 Followers" onAction="#showFollowers" styleClass="sidebar-btn" maxWidth="Infinity"/>
         </VBox>

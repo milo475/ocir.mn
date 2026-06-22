@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.MessagesController"
+            stylesheets="@../css/style.css" prefWidth="1300" prefHeight="900">
+    <top>
+        <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Button text="←" onAction="#goBack" styleClass="btn-small"/>
+            <Label text="💬 Мессежүүд" styleClass="nav-title"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="feed-scroll">
+            <VBox fx:id="conversationsContainer" spacing="5">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

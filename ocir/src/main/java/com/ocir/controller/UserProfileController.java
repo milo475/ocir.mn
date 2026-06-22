@@ -85,4 +85,7 @@ public class UserProfileController {
 
     @FXML
     private void goBack() { App.navigateTo("view/main.fxml"); }
+
+    @FXML
+    private void openChat() { App.navigateTo("view/chat.fxml"); }
 }
