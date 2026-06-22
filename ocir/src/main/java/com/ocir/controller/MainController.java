@@ -3,8 +3,6 @@ package com.ocir.controller;
 import com.ocir.App;
 import com.ocir.dao.*;
 import com.ocir.model.*;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,13 +45,8 @@ public class MainController {
         loadSuggestedUsers();
         searchField.setOnAction(e -> handleSearch());
         updateNotifBadge();
-
-        // Replace bell button text with FontAwesome icon
-        FontAwesomeIconView bellIcon = new FontAwesomeIconView(FontAwesomeIcon.BELL);
-        bellIcon.setSize("18");
-        bellIcon.setStyle("-fx-fill: #F5D5E0;");
-        notifBellBtn.setText("");
-        notifBellBtn.setGraphic(bellIcon);
+        notifBellBtn.setText("🔔");
+        notifBellBtn.setStyle("-fx-font-size: 16;");
     }
 
     private void updateNotifBadge() {
@@ -99,7 +92,7 @@ public class MainController {
                     ? "-fx-background-color: #fafafa; -fx-background-radius: 8; -fx-cursor: hand;"
                     : "-fx-background-color: #F5D5E0; -fx-background-radius: 8; -fx-cursor: hand;");
 
-                FontAwesomeIconView icon = getNotifIcon(n.getType());
+                Label icon = getNotifIcon(n.getType());
                 VBox textBox = new VBox(2);
                 Label text = new Label(getNotifText(n));
                 text.setStyle("-fx-font-size: 13; -fx-text-fill: #210635;");
@@ -147,17 +140,20 @@ public class MainController {
         }
     }
 
-    private FontAwesomeIconView getNotifIcon(String type) {
-        FontAwesomeIconView icon;
+    private Label getNotifIcon(String type) {
+        String icon;
+        String color;
         switch (type) {
-            case "LIKE": icon = new FontAwesomeIconView(FontAwesomeIcon.HEART); icon.setStyle("-fx-fill: #e74c3c;"); break;
-            case "COMMENT": icon = new FontAwesomeIconView(FontAwesomeIcon.COMMENT); icon.setStyle("-fx-fill: #6667AB;"); break;
-            case "FOLLOW": icon = new FontAwesomeIconView(FontAwesomeIcon.USER_PLUS); icon.setStyle("-fx-fill: #7B337E;"); break;
-            case "MESSAGE": icon = new FontAwesomeIconView(FontAwesomeIcon.ENVELOPE); icon.setStyle("-fx-fill: #420D4B;"); break;
-            default: icon = new FontAwesomeIconView(FontAwesomeIcon.BELL); icon.setStyle("-fx-fill: #7B337E;"); break;
+            case "LIKE": icon = "❤️"; color = "#e74c3c"; break;
+            case "COMMENT": icon = "💬"; color = "#6667AB"; break;
+            case "FOLLOW": icon = "👤"; color = "#7B337E"; break;
+            case "MESSAGE": icon = "✉️"; color = "#420D4B"; break;
+            default: icon = "🔔"; color = "#7B337E"; break;
         }
-        icon.setSize("14");
-        return icon;
+        Label lbl = new Label(icon);
+        lbl.setStyle("-fx-font-size: 18; -fx-text-fill: " + color + ";");
+        lbl.setMinWidth(28);
+        return lbl;
     }
 
     private String getNotifText(Notification n) {
@@ -273,15 +269,11 @@ public class MainController {
             }
         }
 
-        // Like & Comment bar with FontAwesome icons
+        // Like & Comment bar
         HBox actions = new HBox(15);
         actions.setAlignment(Pos.CENTER_LEFT);
 
-        FontAwesomeIconView likeIcon = new FontAwesomeIconView(post.isLikedByCurrentUser() ? FontAwesomeIcon.HEART : FontAwesomeIcon.HEART_ALT);
-        likeIcon.setSize("14");
-        likeIcon.setStyle(post.isLikedByCurrentUser() ? "-fx-fill: #e74c3c;" : "-fx-fill: #7B337E;");
-        Button likeBtn = new Button(" " + post.getLikeCount() + " Like");
-        likeBtn.setGraphic(likeIcon);
+        Button likeBtn = new Button((post.isLikedByCurrentUser() ? "❤️ " : "🤍 ") + post.getLikeCount() + " Like");
         likeBtn.getStyleClass().add("btn-action");
         likeBtn.setOnAction(e -> {
             boolean wasLiked = post.isLikedByCurrentUser();
@@ -292,11 +284,7 @@ public class MainController {
             loadFeed();
         });
 
-        FontAwesomeIconView commentIcon = new FontAwesomeIconView(FontAwesomeIcon.COMMENT);
-        commentIcon.setSize("14");
-        commentIcon.setStyle("-fx-fill: #6667AB;");
-        Button commentBtn = new Button(" " + post.getCommentCount() + " Comment");
-        commentBtn.setGraphic(commentIcon);
+        Button commentBtn = new Button("💬 " + post.getCommentCount() + " Comment");
         commentBtn.getStyleClass().add("btn-action");
         actions.getChildren().addAll(likeBtn, commentBtn);
         card.getChildren().add(actions);
