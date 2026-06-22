@@ -76,50 +76,75 @@ public class MainController {
         notifPopup = new Popup();
         notifPopup.setAutoHide(true);
 
-        VBox content = new VBox(5);
-        content.getStyleClass().add("notif-popup");
-        content.setPadding(new Insets(12));
-        content.setMinWidth(300);
-        content.setMaxHeight(400);
-        content.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 3);");
+        VBox content = new VBox(8);
+        content.setPadding(new Insets(18));
+        content.setPrefWidth(380);
+        content.setStyle("-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(66,13,75,0.25), 20, 0, 0, 5);");
 
-        Label title = new Label("Мэдэгдлүүд");
-        title.setStyle("-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #420D4B;");
+        Label title = new Label("🔔 Мэдэгдлүүд");
+        title.setStyle("-fx-font-weight: bold; -fx-font-size: 16; -fx-text-fill: #420D4B;");
         content.getChildren().add(title);
 
         List<Notification> notifs = notificationDAO.getNotifications(App.getCurrentUser().getId());
         if (notifs.isEmpty()) {
             Label empty = new Label("Мэдэгдэл байхгүй");
-            empty.setStyle("-fx-text-fill: #888; -fx-font-size: 12;");
+            empty.setStyle("-fx-text-fill: #888; -fx-font-size: 13; -fx-padding: 20 0 20 0;");
             content.getChildren().add(empty);
         } else {
             for (Notification n : notifs) {
-                HBox row = new HBox(8);
+                HBox row = new HBox(10);
                 row.setAlignment(Pos.CENTER_LEFT);
-                row.setPadding(new Insets(6));
-                row.setStyle(n.isRead() ? "-fx-background-color: white; -fx-background-radius: 6;" :
-                        "-fx-background-color: #F5D5E0; -fx-background-radius: 6;");
+                row.setPadding(new Insets(10, 12, 10, 12));
+                row.setStyle(n.isRead()
+                    ? "-fx-background-color: #fafafa; -fx-background-radius: 8; -fx-cursor: hand;"
+                    : "-fx-background-color: #F5D5E0; -fx-background-radius: 8; -fx-cursor: hand;");
 
                 FontAwesomeIconView icon = getNotifIcon(n.getType());
+                VBox textBox = new VBox(2);
                 Label text = new Label(getNotifText(n));
-                text.setStyle("-fx-font-size: 12;");
+                text.setStyle("-fx-font-size: 13; -fx-text-fill: #210635;");
                 text.setWrapText(true);
-                row.getChildren().addAll(icon, text);
+                Label time = new Label(n.getCreatedAt().toString());
+                time.setStyle("-fx-font-size: 10; -fx-text-fill: #6667AB;");
+                textBox.getChildren().addAll(text, time);
+                HBox.setHgrow(textBox, Priority.ALWAYS);
+
+                row.getChildren().addAll(icon, textBox);
+
+                // Click to navigate
+                row.setOnMouseClicked(e -> {
+                    notifPopup.hide();
+                    navigateToNotification(n);
+                });
+
                 content.getChildren().add(row);
             }
         }
 
-        ScrollPane scroll = new ScrollPane(content);
-        scroll.setFitToWidth(true);
-        scroll.setMaxHeight(400);
-        scroll.setStyle("-fx-background: white; -fx-background-color: white; -fx-background-radius: 10;");
-        notifPopup.getContent().add(scroll);
-
+        notifPopup.getContent().add(content);
         var bounds = notifBellPane.localToScreen(notifBellPane.getBoundsInLocal());
-        notifPopup.show(notifBellPane, bounds.getMinX() - 250, bounds.getMaxY() + 5);
+        notifPopup.show(notifBellPane, bounds.getMinX() - 300, bounds.getMaxY() + 8);
 
         notificationDAO.markAllRead(App.getCurrentUser().getId());
         updateNotifBadge();
+    }
+
+    private void navigateToNotification(Notification n) {
+        switch (n.getType()) {
+            case "MESSAGE":
+                User msgUser = userDAO.findById(n.getFromUserId());
+                if (msgUser != null) { App.setViewedUser(msgUser); App.navigateTo("view/chat.fxml"); }
+                break;
+            case "FOLLOW":
+                User follower = userDAO.findById(n.getFromUserId());
+                if (follower != null) App.viewProfile(follower);
+                break;
+            case "LIKE":
+            case "COMMENT":
+                // Go to own profile to see the post
+                App.navigateTo("view/profile.fxml");
+                break;
+        }
     }
 
     private FontAwesomeIconView getNotifIcon(String type) {

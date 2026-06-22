@@ -1,10 +1,14 @@
 package com.ocir.dao;
 
-import com.ocir.model.User;
-import com.ocir.util.DatabaseManager;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ocir.model.User;
+import com.ocir.util.DatabaseManager;
 
 public class FollowDAO {
 
@@ -23,6 +27,7 @@ public class FollowDAO {
             ps.setInt(1, followerId);
             ps.setInt(2, followingId);
             ResultSet rs = ps.executeQuery();
+            
             if (rs.next()) return rs.getInt(1) > 0;
         } catch (SQLException e) {
             e.printStackTrace();
