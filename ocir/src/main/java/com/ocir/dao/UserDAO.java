@@ -2,6 +2,7 @@ package com.ocir.dao;
 
 import com.ocir.model.User;
 import com.ocir.util.DatabaseManager;
+import com.ocir.util.PasswordUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
-            ps.setString(3, user.getPassword());
+            ps.setString(3, PasswordUtil.hash(user.getPassword()));
             ps.setString(4, user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -28,7 +29,7 @@ public class UserDAO {
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(2, PasswordUtil.hash(password));
             ResultSet rs = ps.executeQuery();
             if (rs.next()) return mapUser(rs);
         } catch (SQLException e) {
