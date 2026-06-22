@@ -7,16 +7,23 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.List;
 
 public class ProfileController {
-    @FXML private Label displayNameLabel, usernameLabel, postCountLabel, followerCountLabel, followingCountLabel, bioLabel;
+    @FXML private Label displayNameLabel, usernameLabel, postCountLabel, followerCountLabel, followingCountLabel, bioLabel, profileEmojiLabel;
     @FXML private VBox editSection, userPostsContainer, followersContainer, followingContainer;
     @FXML private TextField editNameField;
     @FXML private TextArea editBioField;
     @FXML private Button editBtn;
+    @FXML private ImageView profileImageView;
 
     private final UserDAO userDAO = new UserDAO();
     private final PostDAO postDAO = new PostDAO();
@@ -32,8 +39,43 @@ public class ProfileController {
         postCountLabel.setText(postDAO.getUserPosts(user.getId(), user.getId()).size() + " Posts");
         followerCountLabel.setText(followDAO.getFollowerCount(user.getId()) + " Followers");
         followingCountLabel.setText(followDAO.getFollowingCount(user.getId()) + " Following");
+        loadProfileImage(user);
         loadUserPosts();
         loadFollowLists();
+    }
+
+    private void loadProfileImage(User user) {
+        if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) {
+            File imgFile = new File(user.getProfileImage());
+            if (imgFile.exists()) {
+                profileImageView.setImage(new Image(imgFile.toURI().toString()));
+                profileImageView.setVisible(true);
+                profileImageView.setManaged(true);
+                profileEmojiLabel.setVisible(false);
+                profileEmojiLabel.setManaged(false);
+            }
+        }
+    }
+
+    @FXML
+    private void selectProfileImage() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Профайл зураг сонгох");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Зураг", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        File file = fc.showOpenDialog(editSection.getScene().getWindow());
+        if (file != null) {
+            try {
+                Path dir = Paths.get(System.getProperty("user.home"), ".ocir", "profiles");
+                Files.createDirectories(dir);
+                String fileName = App.getCurrentUser().getId() + "_" + file.getName();
+                Path dest = dir.resolve(fileName);
+                Files.copy(file.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
+                App.getCurrentUser().setProfileImage(dest.toString());
+                loadProfileImage(App.getCurrentUser());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loadUserPosts() {
