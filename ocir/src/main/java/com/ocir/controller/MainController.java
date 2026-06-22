@@ -73,6 +73,11 @@ public class MainController {
 
         Label authorLabel = new Label(post.getAuthorDisplayName() != null ? post.getAuthorDisplayName() : post.getAuthorUsername());
         authorLabel.getStyleClass().add("post-author");
+        authorLabel.setStyle("-fx-cursor: hand;");
+        authorLabel.setOnMouseClicked(e -> {
+            User author = userDAO.findById(post.getUserId());
+            if (author != null) App.viewProfile(author);
+        });
         Label timeLabel = new Label(post.getCreatedAt().toString());
         timeLabel.getStyleClass().add("post-time");
         Region spacer = new Region();
@@ -137,10 +142,16 @@ public class MainController {
         for (Comment c : comments) {
             HBox row = new HBox(5);
             row.setAlignment(Pos.CENTER_LEFT);
-            Label lbl = new Label(c.getAuthorUsername() + ": " + c.getContent());
-            lbl.setWrapText(true);
-            lbl.getStyleClass().add("comment-text");
-            row.getChildren().add(lbl);
+            Label authorLbl = new Label(c.getAuthorUsername());
+            authorLbl.setStyle("-fx-font-weight: bold; -fx-cursor: hand;");
+            authorLbl.setOnMouseClicked(e -> {
+                User u = userDAO.findById(c.getUserId());
+                if (u != null) App.viewProfile(u);
+            });
+            Label contentLbl = new Label(": " + c.getContent());
+            contentLbl.setWrapText(true);
+            contentLbl.getStyleClass().add("comment-text");
+            row.getChildren().addAll(authorLbl, contentLbl);
             if (c.getUserId() == App.getCurrentUser().getId()) {
                 Button del = new Button("✕");
                 del.getStyleClass().add("btn-delete-small");

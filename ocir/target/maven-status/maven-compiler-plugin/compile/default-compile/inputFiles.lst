@@ -1,5 +1,6 @@
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/FollowDAO.java
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/model/Post.java
+/home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/UserProfileController.java
 /home/kali/ocir.mn/ocir/src/main/java/module-info.java
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/model/User.java
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/ProfileController.java
@@ -14,3 +15,4 @@
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/util/DatabaseManager.java
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/UserDAO.java
 /home/kali/ocir.mn/ocir/src/main/java/com/ocir/controller/MainController.java
+/home/kali/ocir.mn/ocir/src/main/java/com/ocir/util/PasswordUtil.java

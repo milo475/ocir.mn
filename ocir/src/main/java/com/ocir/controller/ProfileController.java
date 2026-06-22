@@ -104,10 +104,16 @@ public class ProfileController {
         followersContainer.getChildren().clear();
         followingContainer.getChildren().clear();
         for (User u : followDAO.getFollowers(App.getCurrentUser().getId())) {
-            followersContainer.getChildren().add(new Label(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername()));
+            Label lbl = new Label(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername());
+            lbl.setStyle("-fx-cursor: hand;");
+            lbl.setOnMouseClicked(e -> App.viewProfile(u));
+            followersContainer.getChildren().add(lbl);
         }
         for (User u : followDAO.getFollowing(App.getCurrentUser().getId())) {
-            followingContainer.getChildren().add(new Label(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername()));
+            Label lbl = new Label(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername());
+            lbl.setStyle("-fx-cursor: hand;");
+            lbl.setOnMouseClicked(e -> App.viewProfile(u));
+            followingContainer.getChildren().add(lbl);
         }
     }
 

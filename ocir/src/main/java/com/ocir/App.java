@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     private static Stage primaryStage;
     private static User currentUser;
+    private static User viewedUser;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -33,6 +34,17 @@ public class App extends Application {
 
     public static User getCurrentUser() { return currentUser; }
     public static void setCurrentUser(User user) { currentUser = user; }
+    public static User getViewedUser() { return viewedUser; }
+    public static void setViewedUser(User user) { viewedUser = user; }
+
+    public static void viewProfile(User user) {
+        viewedUser = user;
+        if (user.getId() == currentUser.getId()) {
+            navigateTo("view/profile.fxml");
+        } else {
+            navigateTo("view/user_profile.fxml");
+        }
+    }
 
     public static void main(String[] args) { launch(args); }
 }

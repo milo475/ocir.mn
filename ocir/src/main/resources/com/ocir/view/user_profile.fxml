@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.UserProfileController"
+            stylesheets="@../css/style.css" prefWidth="1300" prefHeight="900">
+    <top>
+        <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Label text="🔗 Ocir" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← Буцах" onAction="#goBack" styleClass="btn-small"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="feed-scroll">
+            <VBox alignment="CENTER" spacing="15">
+                <padding><Insets top="30" right="50" bottom="30" left="50"/></padding>
+                <VBox alignment="CENTER" spacing="8" styleClass="profile-header">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="👤" style="-fx-font-size: 50;" fx:id="profileEmojiLabel"/>
+                    <ImageView fx:id="profileImageView" fitWidth="80" fitHeight="80" preserveRatio="true" visible="false" managed="false"/>
+                    <Label fx:id="displayNameLabel" styleClass="profile-name-big"/>
+                    <Label fx:id="usernameLabel" styleClass="profile-username"/>
+                    <HBox alignment="CENTER" spacing="30">
+                        <Label fx:id="postCountLabel" styleClass="stat-label"/>
+                        <Label fx:id="followerCountLabel" styleClass="stat-label"/>
+                        <Label fx:id="followingCountLabel" styleClass="stat-label"/>
+                    </HBox>
+                    <Label fx:id="bioLabel" styleClass="profile-bio"/>
+                    <Button fx:id="followBtn" onAction="#toggleFollow" styleClass="btn-primary"/>
+                </VBox>
+                <Label text="Постууд" styleClass="section-title"/>
+                <VBox fx:id="userPostsContainer" spacing="15"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
