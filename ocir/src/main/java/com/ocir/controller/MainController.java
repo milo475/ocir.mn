@@ -39,6 +39,46 @@ public class MainController {
         profileStatsLabel.setText(followers + " Followers  |  " + following + " Following");
         loadFeed();
         loadSuggestedUsers();
+        searchField.setOnAction(e -> handleSearch());
+    }
+
+    private void handleSearch() {
+        String query = searchField.getText().trim();
+        if (query.isEmpty()) { loadFeed(); return; }
+        postsContainer.getChildren().clear();
+        // Show matching users
+        List<User> users = userDAO.searchUsers(query);
+        if (!users.isEmpty()) {
+            Label title = new Label("👤 Хэрэглэгчид");
+            title.getStyleClass().add("section-title");
+            postsContainer.getChildren().add(title);
+            for (User u : users) {
+                HBox row = new HBox(10);
+                row.setAlignment(Pos.CENTER_LEFT);
+                row.setPadding(new Insets(8));
+                row.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-cursor: hand;");
+                Label name = new Label(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername());
+                name.setStyle("-fx-font-weight: bold;");
+                Label uname = new Label("@" + u.getUsername());
+                uname.getStyleClass().add("post-time");
+                row.getChildren().addAll(name, uname);
+                row.setOnMouseClicked(ev -> App.viewProfile(u));
+                postsContainer.getChildren().add(row);
+            }
+        }
+        // Show matching posts
+        List<Post> posts = postDAO.searchPosts(query, App.getCurrentUser().getId());
+        if (!posts.isEmpty()) {
+            Label title = new Label("📰 Постууд");
+            title.getStyleClass().add("section-title");
+            postsContainer.getChildren().add(title);
+            for (Post post : posts) {
+                postsContainer.getChildren().add(createPostCard(post));
+            }
+        }
+        if (users.isEmpty() && posts.isEmpty()) {
+            postsContainer.getChildren().add(new Label("Илэрц олдсонгүй"));
+        }
     }
 
     private void loadFeed() {
@@ -107,6 +147,18 @@ public class MainController {
         contentLabel.setWrapText(true);
         contentLabel.getStyleClass().add("post-content");
 
+        // Post image
+        card.getChildren().addAll(header, contentLabel);
+        if (post.getImagePath() != null && !post.getImagePath().isEmpty()) {
+            File imgFile = new File(post.getImagePath());
+            if (imgFile.exists()) {
+                ImageView postImage = new ImageView(new Image(imgFile.toURI().toString()));
+                postImage.setFitWidth(500);
+                postImage.setPreserveRatio(true);
+                card.getChildren().add(postImage);
+            }
+        }
+
         // Like & Comment bar
         HBox actions = new HBox(15);
         actions.setAlignment(Pos.CENTER_LEFT);
@@ -117,7 +169,7 @@ public class MainController {
         commentBtn.getStyleClass().add("btn-action");
         actions.getChildren().addAll(likeBtn, commentBtn);
 
-        card.getChildren().addAll(header, contentLabel, actions);
+        card.getChildren().add(actions);
 
         // Comments section (toggle)
         VBox commentsBox = new VBox(5);

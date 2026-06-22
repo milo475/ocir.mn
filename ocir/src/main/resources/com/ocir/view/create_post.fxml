@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.CreatePostController"
@@ -22,6 +23,7 @@
                 <Button text="📷 Зураг нэмэх" onAction="#selectImage" styleClass="btn-small"/>
                 <Label fx:id="imageLabel" text="" styleClass="post-time"/>
             </HBox>
+            <ImageView fx:id="imagePreview" fitWidth="300" preserveRatio="true" visible="false" managed="false"/>
             <Label fx:id="errorLabel" styleClass="error-label"/>
             <Button text="Нийтлэх" onAction="#handlePost" styleClass="btn-primary" maxWidth="Infinity"/>
         </VBox>

@@ -82,6 +82,21 @@ public class UserDAO {
         return users;
     }
 
+    public List<User> searchUsers(String query) {
+        String sql = "SELECT * FROM users WHERE username LIKE ? OR display_name LIKE ? LIMIT 10";
+        List<User> users = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + query + "%");
+            ps.setString(2, "%" + query + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) users.add(mapUser(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     private User mapUser(ResultSet rs) throws SQLException {
         User u = new User();
         u.setId(rs.getInt("id"));

@@ -76,6 +76,25 @@ public class PostDAO {
         return posts;
     }
 
+    public List<Post> searchPosts(String query, int currentUserId) {
+        String sql = "SELECT p.*, u.username, u.display_name, u.profile_image, " +
+                "(SELECT COUNT(*) FROM likes WHERE post_id=p.id) as like_count, " +
+                "(SELECT COUNT(*) FROM comments WHERE post_id=p.id) as comment_count, " +
+                "(SELECT COUNT(*) FROM likes WHERE post_id=p.id AND user_id=?) as liked " +
+                "FROM posts p JOIN users u ON p.user_id=u.id WHERE p.content LIKE ? ORDER BY p.created_at DESC LIMIT 20";
+        List<Post> posts = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, currentUserId);
+            ps.setString(2, "%" + query + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) posts.add(mapPost(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return posts;
+    }
+
     private Post mapPost(ResultSet rs) throws SQLException {
         Post p = new Post();
         p.setId(rs.getInt("id"));
