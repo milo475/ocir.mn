@@ -15,7 +15,7 @@
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="currentUserLabel" styleClass="nav-user"/>
             <StackPane fx:id="notifBellPane" style="-fx-cursor: hand;">
-                <Button fx:id="notifBellBtn" onAction="#toggleNotifications" styleClass="btn-notif-bell" text="🔔"/>
+                <Button fx:id="notifBellBtn" onAction="#toggleNotifications" styleClass="btn-notif-bell" text=""/>
                 <Label fx:id="notifBadge" styleClass="notif-badge" text="" StackPane.alignment="TOP_RIGHT"/>
             </StackPane>
             <Button text="💬" onAction="#showMessages" styleClass="btn-small"/>

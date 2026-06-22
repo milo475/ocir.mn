@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.SVGPath;
 import javafx.stage.Popup;
 
 import java.io.File;
@@ -45,8 +46,13 @@ public class MainController {
         loadSuggestedUsers();
         searchField.setOnAction(e -> handleSearch());
         updateNotifBadge();
-        notifBellBtn.setText("🔔");
-        notifBellBtn.setStyle("-fx-font-size: 16;");
+        // Bell icon using SVG path
+        SVGPath bellSvg = new SVGPath();
+        bellSvg.setContent("M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z");
+        bellSvg.setStyle("-fx-fill: #F5D5E0;");
+        bellSvg.setScaleX(0.85);
+        bellSvg.setScaleY(0.85);
+        notifBellBtn.setGraphic(bellSvg);
     }
 
     private void updateNotifBadge() {
