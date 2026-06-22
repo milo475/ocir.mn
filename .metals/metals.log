@@ -755,3 +755,30 @@ WARNING: Unmatched cancel notification for request id 11
 2026.06.21 21:31:49 WARN  javac exited with exit code 1
 2026.06.21 21:31:49 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
 2026.06.21 21:31:49 INFO  time: compiled ocir in 0.28s
+2026.06.21 21:36:34 INFO  Shut down connection with build server.
+2026.06.22 15:32:48 INFO  Started: Metals version 1.6.7 in folders '/home/kali/ocir.mn' for client Visual Studio Code 1.123.0.
+2026.06.22 15:32:48 INFO  Memory monitor started
+2026.06.22 15:32:48 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.06.22 15:32:48 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/FollowDAO.java. Using fallback presentation compiler.
+Jun 22, 2026 3:32:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+Jun 22, 2026 3:32:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2026.06.22 15:32:49 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/FollowDAO.java. Using fallback presentation compiler.
+Jun 22, 2026 3:32:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+2026.06.22 15:32:49 INFO  Attempting to connect to the build server...
+2026.06.22 15:32:49 INFO  No running Bloop server found, starting one.
+2026.06.22 15:32:50 INFO  Starting compilation server
+2026.06.22 15:32:51 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/kali/ocir.mn/.metals/bsp.trace.json or /home/kali/.cache/metals/bsp.trace.json
+2026.06.22 15:32:52 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/FollowDAO.java. Using fallback presentation compiler.
+2026.06.22 15:32:52 INFO  no build target found for /home/kali/ocir.mn/ocir/src/main/java/com/ocir/dao/FollowDAO.java. Using fallback presentation compiler.
+2026.06.22 15:32:52 INFO  time: Connected to build server in 2.84s
+2026.06.22 15:32:51 INFO  Connected to Build server: Bloop v2.0.19
+2026.06.22 15:32:52 INFO  time: Imported build in 0.11s
+2026.06.22 15:32:53 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip, /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.
+2026.06.22 15:32:53 INFO  time: indexed workspace in 1.67s
+2026.06.22 15:32:54 INFO  compiling ocir (16 java sources)
+2026.06.22 15:32:54 WARN  Invalid text document uri received from build server: file:///home/kali/.local/share/scalacli/bloop/warning:%5Boptions%5D%20system%20modules%20path%20not%20set%20in%20conjunction%20with%20-source%2011%0A/home/kali/ocir.mn/ocir/src/main/java/module-info.java
+2026.06.22 15:32:54 WARN  javac exited with exit code 1
+2026.06.22 15:32:54 INFO  time: compiled ocir in 0.4s
