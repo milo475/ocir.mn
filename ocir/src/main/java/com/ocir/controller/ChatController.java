@@ -2,6 +2,7 @@ package com.ocir.controller;
 
 import com.ocir.App;
 import com.ocir.dao.MessageDAO;
+import com.ocir.dao.NotificationDAO;
 import com.ocir.model.Message;
 import com.ocir.model.User;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ public class ChatController {
     @FXML private ScrollPane chatScrollPane;
 
     private final MessageDAO messageDAO = new MessageDAO();
+    private final NotificationDAO notificationDAO = new NotificationDAO();
     private User chatUser;
 
     @FXML
@@ -67,6 +69,7 @@ public class ChatController {
         String text = messageInput.getText().trim();
         if (!text.isEmpty()) {
             messageDAO.sendMessage(App.getCurrentUser().getId(), chatUser.getId(), text);
+            notificationDAO.createNotification(chatUser.getId(), App.getCurrentUser().getId(), "MESSAGE", null);
             messageInput.clear();
             loadMessages();
         }
