@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.io.File;
 import java.util.List;
 
 public class MainController {
@@ -54,6 +57,20 @@ public class MainController {
         // Header: author + follow btn
         HBox header = new HBox(10);
         header.setAlignment(Pos.CENTER_LEFT);
+
+        // Profile image
+        String profileImg = post.getAuthorProfileImage();
+        if (profileImg != null && !profileImg.isEmpty()) {
+            File imgFile = new File(profileImg);
+            if (imgFile.exists()) {
+                ImageView avatar = new ImageView(new Image(imgFile.toURI().toString()));
+                avatar.setFitWidth(32);
+                avatar.setFitHeight(32);
+                avatar.setPreserveRatio(true);
+                header.getChildren().add(avatar);
+            }
+        }
+
         Label authorLabel = new Label(post.getAuthorDisplayName() != null ? post.getAuthorDisplayName() : post.getAuthorUsername());
         authorLabel.getStyleClass().add("post-author");
         Label timeLabel = new Label(post.getCreatedAt().toString());

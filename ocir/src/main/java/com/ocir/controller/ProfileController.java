@@ -71,6 +71,7 @@ public class ProfileController {
                 Path dest = dir.resolve(fileName);
                 Files.copy(file.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
                 App.getCurrentUser().setProfileImage(dest.toString());
+                userDAO.updateProfile(App.getCurrentUser());
                 loadProfileImage(App.getCurrentUser());
             } catch (IOException e) {
                 e.printStackTrace();
