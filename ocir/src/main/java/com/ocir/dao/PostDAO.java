@@ -22,26 +22,49 @@ public class PostDAO {
         }
     }
 
+    public static final int PAGE_SIZE = 10;
+
     public List<Post> getFeedPosts(int currentUserId) {
+        return getFeedPosts(currentUserId, 0);
+    }
+
+    public List<Post> getFeedPosts(int currentUserId, int offset) {
         String sql = "SELECT p.*, u.username, u.display_name, u.profile_image, " +
                 "(SELECT COUNT(*) FROM likes WHERE post_id=p.id) as like_count, " +
                 "(SELECT COUNT(*) FROM comments WHERE post_id=p.id) as comment_count, " +
                 "(SELECT COUNT(*) FROM likes WHERE post_id=p.id AND user_id=?) as liked " +
-                "FROM posts p JOIN users u ON p.user_id=u.id ORDER BY p.created_at DESC";
-        return queryPosts(sql, currentUserId);
+                "FROM posts p JOIN users u ON p.user_id=u.id ORDER BY p.created_at DESC LIMIT ? OFFSET ?";
+        List<Post> posts = new ArrayList<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, currentUserId);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, offset);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) posts.add(mapPost(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return posts;
     }
 
     public List<Post> getUserPosts(int userId, int currentUserId) {
+        return getUserPosts(userId, currentUserId, 0);
+    }
+
+    public List<Post> getUserPosts(int userId, int currentUserId, int offset) {
         String sql = "SELECT p.*, u.username, u.display_name, u.profile_image, " +
                 "(SELECT COUNT(*) FROM likes WHERE post_id=p.id) as like_count, " +
                 "(SELECT COUNT(*) FROM comments WHERE post_id=p.id) as comment_count, " +
                 "(SELECT COUNT(*) FROM likes WHERE post_id=p.id AND user_id=?) as liked " +
-                "FROM posts p JOIN users u ON p.user_id=u.id WHERE p.user_id=? ORDER BY p.created_at DESC";
+                "FROM posts p JOIN users u ON p.user_id=u.id WHERE p.user_id=? ORDER BY p.created_at DESC LIMIT ? OFFSET ?";
         List<Post> posts = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, currentUserId);
             ps.setInt(2, userId);
+            ps.setInt(3, PAGE_SIZE);
+            ps.setInt(4, offset);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) posts.add(mapPost(rs));
         } catch (SQLException e) {
@@ -63,18 +86,6 @@ public class PostDAO {
         }
     }
 
-    private List<Post> queryPosts(String sql, int currentUserId) {
-        List<Post> posts = new ArrayList<>();
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, currentUserId);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) posts.add(mapPost(rs));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return posts;
-    }
 
     public List<Post> searchPosts(String query, int currentUserId) {
         String sql = "SELECT p.*, u.username, u.display_name, u.profile_image, " +

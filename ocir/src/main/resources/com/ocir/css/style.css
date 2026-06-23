@@ -174,3 +174,12 @@
     -fx-translate-x: 8;
     -fx-translate-y: -5;
 }
+
+/* Loading Spinner */
+.loading-spinner {
+    -fx-progress-color: #7B337E;
+    -fx-padding: 15;
+}
+.loading-spinner .percentage {
+    visibility: hidden;
+}

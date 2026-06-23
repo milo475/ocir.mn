@@ -44,7 +44,7 @@
                 <Button text="Нийтлэх" onAction="#handleQuickPost" styleClass="btn-primary"/>
             </HBox>
             <!-- Posts Feed -->
-            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="feed-scroll">
+            <ScrollPane fx:id="feedScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="feed-scroll">
                 <VBox fx:id="postsContainer" spacing="15">
                     <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
                 </VBox>

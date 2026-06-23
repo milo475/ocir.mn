@@ -30,6 +30,9 @@ public class ProfileController {
     private final FollowDAO followDAO = new FollowDAO();
     private final LikeDAO likeDAO = new LikeDAO();
 
+    private int currentOffset = 0;
+    private boolean hasMore = true;
+
     @FXML
     public void initialize() {
         User user = App.getCurrentUser();
@@ -81,7 +84,14 @@ public class ProfileController {
 
     private void loadUserPosts() {
         userPostsContainer.getChildren().clear();
-        List<Post> posts = postDAO.getUserPosts(App.getCurrentUser().getId(), App.getCurrentUser().getId());
+        currentOffset = 0;
+        hasMore = true;
+        loadMoreUserPosts();
+    }
+
+    private void loadMoreUserPosts() {
+        User user = App.getCurrentUser();
+        List<Post> posts = postDAO.getUserPosts(user.getId(), user.getId(), currentOffset);
         for (Post p : posts) {
             VBox card = new VBox(5);
             card.getStyleClass().add("post-card");
@@ -97,6 +107,17 @@ public class ProfileController {
             actions.getChildren().add(del);
             card.getChildren().addAll(content, stats, actions);
             userPostsContainer.getChildren().add(card);
+        }
+        currentOffset += posts.size();
+        hasMore = posts.size() >= PostDAO.PAGE_SIZE;
+        // "Цааш үзэх" товч нэмэх
+        userPostsContainer.getChildren().removeIf(n -> "loadMoreBtn".equals(n.getId()));
+        if (hasMore) {
+            Button loadMoreBtn = new Button("Цааш үзэх...");
+            loadMoreBtn.setId("loadMoreBtn");
+            loadMoreBtn.getStyleClass().add("btn-small");
+            loadMoreBtn.setOnAction(e -> { userPostsContainer.getChildren().remove(loadMoreBtn); loadMoreUserPosts(); });
+            userPostsContainer.getChildren().add(loadMoreBtn);
         }
     }
 

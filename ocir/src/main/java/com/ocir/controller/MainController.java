@@ -27,6 +27,7 @@ public class MainController {
     @FXML private Button notifBellBtn;
     @FXML private Label notifBadge;
     @FXML private StackPane notifBellPane;
+    @FXML private ScrollPane feedScrollPane;
 
     private final PostDAO postDAO = new PostDAO();
     private final LikeDAO likeDAO = new LikeDAO();
@@ -35,6 +36,11 @@ public class MainController {
     private final UserDAO userDAO = new UserDAO();
     private final NotificationDAO notificationDAO = new NotificationDAO();
     private Popup notifPopup;
+
+    private int currentOffset = 0;
+    private boolean isLoading = false;
+    private boolean hasMore = true;
+    private ProgressIndicator loadingSpinner;
 
     @FXML
     public void initialize() {
@@ -46,6 +52,14 @@ public class MainController {
         loadSuggestedUsers();
         searchField.setOnAction(e -> handleSearch());
         updateNotifBadge();
+
+        // Scroll pagination
+        feedScrollPane.vvalueProperty().addListener((obs, old, val) -> {
+            if (val.doubleValue() > 0.85 && !isLoading && hasMore) {
+                loadMorePosts();
+            }
+        });
+
         // Bell icon using SVG path
         SVGPath bellSvg = new SVGPath();
         bellSvg.setContent("M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z");
@@ -209,8 +223,38 @@ public class MainController {
 
     private void loadFeed() {
         postsContainer.getChildren().clear();
-        List<Post> posts = postDAO.getFeedPosts(App.getCurrentUser().getId());
+        currentOffset = 0;
+        hasMore = true;
+        List<Post> posts = postDAO.getFeedPosts(App.getCurrentUser().getId(), 0);
         for (Post post : posts) postsContainer.getChildren().add(createPostCard(post));
+        currentOffset = posts.size();
+        hasMore = posts.size() >= PostDAO.PAGE_SIZE;
+    }
+
+    private void loadMorePosts() {
+        if (isLoading || !hasMore) return;
+        isLoading = true;
+        showLoading(true);
+        javafx.application.Platform.runLater(() -> {
+            List<Post> posts = postDAO.getFeedPosts(App.getCurrentUser().getId(), currentOffset);
+            showLoading(false);
+            for (Post post : posts) postsContainer.getChildren().add(createPostCard(post));
+            currentOffset += posts.size();
+            hasMore = posts.size() >= PostDAO.PAGE_SIZE;
+            isLoading = false;
+        });
+    }
+
+    private void showLoading(boolean show) {
+        if (show) {
+            loadingSpinner = new ProgressIndicator();
+            loadingSpinner.getStyleClass().add("loading-spinner");
+            loadingSpinner.setMaxSize(40, 40);
+            postsContainer.getChildren().add(loadingSpinner);
+        } else if (loadingSpinner != null) {
+            postsContainer.getChildren().remove(loadingSpinner);
+            loadingSpinner = null;
+        }
     }
 
     private VBox createPostCard(Post post) {

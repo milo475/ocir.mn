@@ -68,7 +68,7 @@ public class UserDAO {
 
     public List<User> getSuggestedUsers(int currentUserId) {
         String sql = "SELECT * FROM users WHERE id != ? AND id NOT IN " +
-                "(SELECT following_id FROM follows WHERE follower_id = ?) LIMIT 5";
+                "(SELECT following_id FROM follows WHERE follower_id = ?) ORDER BY RAND() LIMIT 10";
         List<User> users = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
