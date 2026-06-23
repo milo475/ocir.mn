@@ -1,5 +1,21 @@
 # Ocir - Social Media Application
 
+## Windows дээр суулгах заавар
+
+### Шаардлага
+- Windows 10/11 (64-bit)
+- Java 17+ суусан байх
+
+### Суулгах
+
+1. `.exe` installer-ыг татах:
+
+   👉 [Ocir Windows Installer татах](https://drive.google.com/file/d/1ItEk2OC6VJi8Ls_-Pohm2YFvpEJfJHzT/view?usp=drive_link)
+
+2. Татаж авсан `.exe` файлыг ажиллуулж, зааврын дагуу суулгана.
+
+---
+
 ## Linux дээр суулгах заавар
 
 ### Шаардлага
