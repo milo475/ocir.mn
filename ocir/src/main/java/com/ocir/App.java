@@ -12,6 +12,7 @@ public class App extends Application {
     private static Stage primaryStage;
     private static User currentUser;
     private static User viewedUser;
+    private static boolean darkMode = false;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,9 +27,27 @@ public class App extends Application {
         try {
             Parent root = FXMLLoader.load(App.class.getResource(fxml));
             Scene scene = new Scene(root);
+            applyTheme(root);
             primaryStage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void applyTheme(Parent root) {
+        root.getStylesheets().clear();
+        if (darkMode) {
+            root.getStylesheets().add(App.class.getResource("css/dark-style.css").toExternalForm());
+        } else {
+            root.getStylesheets().add(App.class.getResource("css/style.css").toExternalForm());
+        }
+    }
+
+    public static boolean isDarkMode() { return darkMode; }
+    public static void toggleDarkMode() {
+        darkMode = !darkMode;
+        if (primaryStage.getScene() != null && primaryStage.getScene().getRoot() != null) {
+            applyTheme(primaryStage.getScene().getRoot());
         }
     }
 

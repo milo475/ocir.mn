@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.RegisterController"
-           stylesheets="@../css/style.css" styleClass="login-bg" prefWidth="800" prefHeight="600">
+           styleClass="login-bg" prefWidth="800" prefHeight="600">
     <VBox alignment="CENTER" spacing="15" maxWidth="320" styleClass="login-card">
         <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
         <Label text="🔗 Ocir" styleClass="app-title"/>

@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ocir.controller.MainController"
-            stylesheets="@../css/style.css" prefWidth="1300" prefHeight="900">
+            prefWidth="1300" prefHeight="900">
     <!-- Top Nav Bar -->
     <top>
         <HBox styleClass="top-nav" alignment="CENTER_LEFT" spacing="20">
@@ -19,6 +19,7 @@
                 <Label fx:id="notifBadge" styleClass="notif-badge" text="" StackPane.alignment="TOP_RIGHT"/>
             </StackPane>
             <Button text="💬" onAction="#showMessages" styleClass="btn-small"/>
+            <Button text="🌙" onAction="#toggleDarkMode" styleClass="btn-logout"/>
             <Button text="Logout" onAction="#handleLogout" styleClass="btn-logout"/>
         </HBox>
     </top>
