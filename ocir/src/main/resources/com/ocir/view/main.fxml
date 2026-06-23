@@ -19,7 +19,7 @@
                 <Label fx:id="notifBadge" styleClass="notif-badge" text="" StackPane.alignment="TOP_RIGHT"/>
             </StackPane>
             <Button text="💬" onAction="#showMessages" styleClass="btn-small"/>
-            <Button text="🌙" onAction="#toggleDarkMode" styleClass="btn-logout"/>
+            <Button fx:id="darkModeBtn" onAction="#toggleDarkMode" styleClass="btn-logout" text=""/>
             <Button text="Logout" onAction="#handleLogout" styleClass="btn-logout"/>
         </HBox>
     </top>
