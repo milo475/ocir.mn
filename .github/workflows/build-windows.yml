@@ -1,0 +1,33 @@
+name: Build Windows Installer
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build JAR
+        run: mvn package -q
+        working-directory: ocir
+
+      - name: Create installer
+        run: |
+          jpackage --name Ocir --input target --main-jar ocir-1.0-SNAPSHOT.jar --main-class com.ocir.Launcher --type exe --app-version 1.0.0 --description "Ocir - Social Media" --vendor Ocir --dest target/installer --java-options "--enable-native-access=ALL-UNNAMED" --win-shortcut --win-menu
+        working-directory: ocir
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ocir-Windows-Installer
+          path: ocir/target/installer/*.exe

@@ -1,0 +1,8 @@
+.metals/
+.vscode/
+.bloop/
+ocir/.bloop/
+ocir/target/classes/
+ocir/target/maven-status/
+ocir/target/original-ocir-1.0-SNAPSHOT.jar
+ocir/target/windows-bundle/
