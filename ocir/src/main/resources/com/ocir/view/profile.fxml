@@ -45,6 +45,9 @@
                 <!-- User Posts -->
                 <Label text="Постууд" styleClass="section-title"/>
                 <VBox fx:id="userPostsContainer" spacing="15"/>
+                <!-- Bookmarked Posts -->
+                <Label text="🔖 Хадгалсан постууд" styleClass="section-title"/>
+                <VBox fx:id="bookmarksContainer" spacing="15"/>
                 <!-- Followers/Following -->
                 <HBox spacing="30" alignment="CENTER">
                     <VBox spacing="5">

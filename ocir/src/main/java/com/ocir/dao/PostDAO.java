@@ -86,6 +86,20 @@ public class PostDAO {
         }
     }
 
+    public boolean updatePost(int postId, int userId, String content) {
+        String sql = "UPDATE posts SET content=? WHERE id=? AND user_id=?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, content);
+            ps.setInt(2, postId);
+            ps.setInt(3, userId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public List<Post> searchPosts(String query, int currentUserId) {
         String sql = "SELECT p.*, u.username, u.display_name, u.profile_image, " +

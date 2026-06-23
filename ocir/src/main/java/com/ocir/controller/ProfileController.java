@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ProfileController {
     @FXML private Label displayNameLabel, usernameLabel, postCountLabel, followerCountLabel, followingCountLabel, bioLabel, profileEmojiLabel;
-    @FXML private VBox editSection, userPostsContainer, followersContainer, followingContainer;
+    @FXML private VBox editSection, userPostsContainer, followersContainer, followingContainer, bookmarksContainer;
     @FXML private TextField editNameField;
     @FXML private TextArea editBioField;
     @FXML private Button editBtn;
@@ -29,6 +29,7 @@ public class ProfileController {
     private final PostDAO postDAO = new PostDAO();
     private final FollowDAO followDAO = new FollowDAO();
     private final LikeDAO likeDAO = new LikeDAO();
+    private final BookmarkDAO bookmarkDAO = new BookmarkDAO();
 
     private int currentOffset = 0;
     private boolean hasMore = true;
@@ -45,6 +46,7 @@ public class ProfileController {
         loadProfileImage(user);
         loadUserPosts();
         loadFollowLists();
+        loadBookmarks();
     }
 
     private void loadProfileImage(User user) {
@@ -160,6 +162,33 @@ public class ProfileController {
         editSection.setManaged(false);
         displayNameLabel.setText(user.getDisplayName());
         bioLabel.setText(user.getBio());
+    }
+
+    private void loadBookmarks() {
+        bookmarksContainer.getChildren().clear();
+        List<Post> posts = bookmarkDAO.getBookmarkedPosts(App.getCurrentUser().getId());
+        if (posts.isEmpty()) {
+            Label empty = new Label("Хадгалсан пост байхгүй");
+            empty.getStyleClass().add("post-time");
+            bookmarksContainer.getChildren().add(empty);
+            return;
+        }
+        for (Post p : posts) {
+            VBox card = new VBox(5);
+            card.getStyleClass().add("post-card");
+            card.setPadding(new Insets(10));
+            Label author = new Label(p.getAuthorDisplayName() != null ? p.getAuthorDisplayName() : p.getAuthorUsername());
+            author.setStyle("-fx-font-weight: bold; -fx-text-fill: #420D4B;");
+            Label content = new Label(p.getContent());
+            content.setWrapText(true);
+            Label stats = new Label("❤️ " + p.getLikeCount() + "  💬 " + p.getCommentCount());
+            stats.getStyleClass().add("post-time");
+            Button removeBtn = new Button("🔖 Хасах");
+            removeBtn.getStyleClass().add("btn-delete");
+            removeBtn.setOnAction(e -> { bookmarkDAO.toggleBookmark(App.getCurrentUser().getId(), p.getId()); loadBookmarks(); });
+            card.getChildren().addAll(author, content, stats, removeBtn);
+            bookmarksContainer.getChildren().add(card);
+        }
     }
 
     @FXML

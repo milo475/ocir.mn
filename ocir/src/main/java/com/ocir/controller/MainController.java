@@ -35,6 +35,7 @@ public class MainController {
     private final FollowDAO followDAO = new FollowDAO();
     private final UserDAO userDAO = new UserDAO();
     private final NotificationDAO notificationDAO = new NotificationDAO();
+    private final BookmarkDAO bookmarkDAO = new BookmarkDAO();
     private Popup notifPopup;
 
     private int currentOffset = 0;
@@ -336,7 +337,26 @@ public class MainController {
 
         Button commentBtn = new Button("💬 " + post.getCommentCount() + " Comment");
         commentBtn.getStyleClass().add("btn-action");
-        actions.getChildren().addAll(likeBtn, commentBtn);
+
+        // Bookmark товч
+        boolean bookmarked = bookmarkDAO.isBookmarked(App.getCurrentUser().getId(), post.getId());
+        Button bookmarkBtn = new Button(bookmarked ? "🔖" : "📑");
+        bookmarkBtn.getStyleClass().add("btn-action");
+        bookmarkBtn.setOnAction(e -> {
+            bookmarkDAO.toggleBookmark(App.getCurrentUser().getId(), post.getId());
+            loadFeed();
+        });
+
+        actions.getChildren().addAll(likeBtn, commentBtn, bookmarkBtn);
+
+        // Edit товч (зөвхөн өөрийн пост)
+        if (post.getUserId() == App.getCurrentUser().getId()) {
+            Button editBtn = new Button("✏️");
+            editBtn.getStyleClass().add("btn-action");
+            editBtn.setOnAction(e -> showEditDialog(post));
+            actions.getChildren().add(editBtn);
+        }
+
         card.getChildren().add(actions);
 
         VBox commentsBox = new VBox(5);
@@ -433,6 +453,19 @@ public class MainController {
             Post post = new Post(); post.setUserId(App.getCurrentUser().getId()); post.setContent(content);
             postDAO.createPost(post); quickPostField.clear(); loadFeed();
         }
+    }
+
+    private void showEditDialog(Post post) {
+        TextInputDialog dialog = new TextInputDialog(post.getContent());
+        dialog.setTitle("Пост засварлах");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Агуулга:");
+        dialog.showAndWait().ifPresent(newContent -> {
+            if (!newContent.trim().isEmpty()) {
+                postDAO.updatePost(post.getId(), App.getCurrentUser().getId(), newContent.trim());
+                loadFeed();
+            }
+        });
     }
 
     @FXML private void handleLogout() { App.setCurrentUser(null); App.navigateTo("view/login.fxml"); }
